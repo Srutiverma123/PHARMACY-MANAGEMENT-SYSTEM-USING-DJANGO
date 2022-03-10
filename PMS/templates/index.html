@@ -1,0 +1,49 @@
+<html>
+<head>
+<title>PMS</title>
+</head>
+<body>
+
+<center><h1>PHARMACY MANAGEMENT SYSTEM</h1></center>
+
+{% for d in med %} <!--med is list of all medicines present in table-->
+  <img src="{{d.img.url}}">
+  {% if d.quantity %} <!--if quantity is != 0 then print the quantity-->
+    QUANTITY(in mg): {{d.quantity}}
+  {% endif %}
+     <br>
+	 MEDICINE NAME: {{d.name}} <br>
+	 DESCRIPTION: {{d.desc}}<br>
+     PRICE(per 500 mg): Rs. {{d.price}}<br><br><br>
+{% endfor %}
+
+<br><br>
+
+<center>
+
+<form action="{% url 'name' %}"> <!--name function in views.py file gets triggered-->
+	{% csrf_token %}
+  Check by medicine name:
+  <input type="text" name="name">
+  <input type="submit" value="Submit">
+</form>
+
+<form action="{% url 'price' %}">  <!--price function in views.py file gets triggered-->
+	{% csrf_token %}
+  Check by price:
+  <input type="number" name="price">
+  <input type="submit" value="Submit">
+</form>
+
+<form action="{% url 'quantity' %}">  <!--quantity function in views.py file gets triggered-->
+	{% csrf_token %}
+  Check by quantity:
+  <input type="number" name="quantity">
+  <input type="submit" value="Submit">
+</form>
+
+<a href="{% url 'outOfStock' %}">OUT OF STOCK</a><br> <!--outOfStock function in views.py file gets triggered-->
+    <a href="{% url 'expiry' %}">EXPIRED</a> <!--expiry function in views.py file gets triggered-->
+
+</center>
+</body></html>

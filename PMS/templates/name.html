@@ -1,0 +1,22 @@
+<html>
+<head>
+<title>PMS</title>
+</head>
+<body>
+
+{% for d in med %} <!--med is list of all medicines present in table-->
+ {% if d.name in name %} <!--if user enters PARACETAMOL then name value is PARACETAMOL-->
+  <img src="{{d.img.url}}">
+  {% if d.quantity %} <!--if quantity is != 0 then print the quantity-->
+    QUANTITY(in mg): {{d.quantity}}
+  {% endif %}
+  <br>
+   MEDICINE NAME: {{d.name}} <br>
+   DESCRIPTION: {{d.desc}}<br>
+   PRICE(per 500 mg): Rs. {{d.price}}<br><br><br>
+ {% endif %}
+{% endfor %}
+<br><br>
+
+<center><a href="{% url 'index' %}">HOME PAGE</a></center>
+</body></html>

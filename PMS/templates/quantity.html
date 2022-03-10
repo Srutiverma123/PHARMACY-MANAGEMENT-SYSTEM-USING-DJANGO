@@ -1,0 +1,20 @@
+<html>
+<head>
+<title>PMS</title>
+</head>
+<body>
+
+{% for d in med %}
+  <img src="{{d.img.url}}">
+  {% if d.quantity %} <!--if quantity is != 0 then print the quantity-->
+    QUANTITY(in mg): {{d.quantity}}
+  {% endif %}
+     <br>
+	 MEDICINE NAME: {{d.name}} <br>
+	 DESCRIPTION: {{d.desc}}<br>
+     PRICE(per 500 mg): Rs. {{d.price}}<br><br><br>
+{% endfor %}
+
+<center><a href="{% url 'index' %}">HOME PAGE</a>
+</center>
+</body></html>
